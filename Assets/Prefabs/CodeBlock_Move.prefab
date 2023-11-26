@@ -998,7 +998,7 @@ GameObject:
   - component: {fileID: 5117931329924144556}
   - component: {fileID: 5574152750624035574}
   - component: {fileID: 3681961449991772764}
-  - component: {fileID: 1330812572284249646}
+  - component: {fileID: 5176814344175052456}
   - component: {fileID: -6192255506690473378}
   m_Layer: 5
   m_Name: CodeBlock_Move
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1330812572284249646
+--- !u!114 &5176814344175052456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1075,11 +1075,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8106667163106842060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50fc553e74cfda04185809206ce25c99, type: 3}
+  m_Script: {fileID: 11500000, guid: 43fb90bfe84e7694f9c9378fddb51388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: -6192255506690473378}
-  statement: 0
 --- !u!225 &-6192255506690473378
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1429,5 +1428,17 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5176814344175052456}
+        m_TargetAssemblyTypeName: CodeBlock_Statement_Move, Assembly-CSharp
+        m_MethodName: OnDropdownValueChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
