@@ -27,7 +27,7 @@ public class Compiler : MonoBehaviour, IDropHandler
         {
             if (playerScript.StepComplete)
             {
-                Invoke("CompileNextStep", 0);
+                CompileNextStep();
             }
         }
     }
