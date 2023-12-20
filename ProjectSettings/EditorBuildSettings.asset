@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/Christophs Dom\xE4ne.unity"
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/UI Scenes/CrankyTankyBlizzardWizardLizard_MainMenu.unity
+    guid: 6079524a2be7d39429b6cd56cb049799
+  - enabled: 1
+    path: Assets/Scenes/UI Scenes/CrankyTankyBlizardWizardLizard_UI.unity
+    guid: 74da3f9bbe12cf9459bb01d48f15cb68
   m_configObjects: {}
