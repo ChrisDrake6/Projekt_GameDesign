@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    //Specific scene will be loaded
     public void MoveToScene(int sceneID)
     {
         SceneManager.LoadScene(sceneID);
