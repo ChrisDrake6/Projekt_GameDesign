@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 /// <summary>
 /// This is responsible for creating and managing slots for runestones.
@@ -12,6 +14,8 @@ using TMPro;
 public class RuneStoneManager : MonoBehaviour
 {
     public static RuneStoneManager Instance { get; private set; }
+
+    public GraphicRaycaster graphicRaycaster;
 
     public GameObject possibleSlotIndicator;
     public GameObject startRune;
@@ -29,17 +33,35 @@ public class RuneStoneManager : MonoBehaviour
     /// </summary>
     public void DisplayPossibleSlots()
     {
-        GameObject lastSlot = transform.GetChild(transform.childCount - 1).gameObject;
-        float offsetDistance = lastSlot.GetComponent<RectTransform>().sizeDelta.y * lastSlot.transform.localScale.y;
+        // TODO: Deal with if and loop offsets
+        PointerEventData pointer = new PointerEventData(EventSystem.current);
+        List<RaycastResult> rayCastResults = new List<RaycastResult>();
 
-        Vector3 targetPosition = lastSlot.transform.position;
-        targetPosition.y -= offsetDistance;
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.CompareTag("RuneStone"))
+                {
+                rayCastResults.Clear();
 
-        GameObject indicator = Instantiate(possibleSlotIndicator, targetPosition, possibleSlotIndicator.transform.rotation, lastSlot.transform.parent);
-        indicators.Add(indicator);
+                // calculate position of next possible slot
+                float offsetDistance = child.gameObject.GetComponent<RectTransform>().sizeDelta.y * child.localScale.y;
+                Vector3 targetPosition = child.position;
+                targetPosition.y -= offsetDistance;
 
+                // check if at position is a runestone or an indicator
+                pointer.position = targetPosition;
+                graphicRaycaster.Raycast(pointer, rayCastResults);
+
+                if (rayCastResults.Where(result => result.gameObject.CompareTag("RuneStone") || result.gameObject.CompareTag("Indicator")).Count() == 0)
+                {
+                    // If nothing is found, create indicator
+                    GameObject indicator = Instantiate(possibleSlotIndicator, targetPosition, possibleSlotIndicator.transform.rotation, child.parent);
+                    indicators.Add(indicator);
+                }
+            }
+        }
     }
-    
+
     /// <summary>
     /// Gets called when a runestone gets dropped
     /// All Indicators get deleted
@@ -73,7 +95,7 @@ public class RuneStoneManager : MonoBehaviour
 
             // if there already is an indicator, remove it. No need for two slots at the same location
             GameObject nextChild = target.transform.parent.GetChild(childIndex - 1)?.gameObject;
-            if(nextChild != null && indicators.Contains(nextChild))
+            if (nextChild != null && indicators.Contains(nextChild))
             {
                 indicators.Remove(nextChild);
                 Destroy(nextChild);

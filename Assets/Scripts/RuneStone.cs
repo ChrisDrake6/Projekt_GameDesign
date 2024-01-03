@@ -10,6 +10,7 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     public Transform defaultParent;
 
     RectTransform rectTransform;
+
     bool wasClicked = false;
 
     void Awake()
@@ -34,6 +35,8 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
+
+        // if it is not slotted, destroy it.
         if (transform.parent == defaultParent)
         {
             Destroy(gameObject);
@@ -41,6 +44,10 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
         RuneStoneManager.Instance.ResetDisplayOfPossibleSlots();
     }
 
+    /// <summary>
+    /// create a clone of the runeslot as new pickup.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!wasClicked)
@@ -52,6 +59,7 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Gets triggered when the runestone gets hovered of an already slotted runestone
         if (collision.gameObject.CompareTag("RuneStone") && transform.parent != defaultParent)
         {
             RuneStoneManager.Instance.HandleListEnter(gameObject);

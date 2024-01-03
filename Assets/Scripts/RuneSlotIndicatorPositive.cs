@@ -9,6 +9,7 @@ public class RuneSlotIndicatorPositive : MonoBehaviour, IDropHandler
     {
         if(eventData.pointerDrag != null)
         {
+            // If runestone gets dropped over the slot, set its position, parent and childindex to the slot
             eventData.pointerDrag.transform.SetParent(transform.parent, false);
             eventData.pointerDrag.transform.SetSiblingIndex(gameObject.transform.GetSiblingIndex());
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;

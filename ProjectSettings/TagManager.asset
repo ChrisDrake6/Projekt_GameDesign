@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - RuneStone
+  - Indicator
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Runestones
   - Water
   - UI
-  - 
+  - Indicators
   - 
   - 
   - 
