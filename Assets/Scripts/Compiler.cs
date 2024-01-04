@@ -85,6 +85,7 @@ public class Compiler : MonoBehaviour
         }
         else
         {
+            GameManager.Instance.CheckForWin();
             processRunning = false;
             codeBlocks.Clear();
             currentOrderIndex = 0;

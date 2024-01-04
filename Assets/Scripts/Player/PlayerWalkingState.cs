@@ -12,7 +12,7 @@ public class PlayerWalkingState : PlayerBaseState
     float cellWidth;
 
     // TODO: Use coordinates instead
-    float length = 5;
+    float length = 20;
 
     public override void EnterState(PlayerStateManager player)
     {

@@ -124,4 +124,16 @@ public class RuneStoneManager : MonoBehaviour
             Destroy(target);
         }
     }
+
+
+    public void Clear()
+    {
+        foreach (Transform child in transform)
+        {
+            if(child.gameObject.CompareTag("RuneStone") && child.gameObject.name != "StartRune/Compiler")
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
 }

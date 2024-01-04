@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1668719096416091179}
   - component: {fileID: 1110674562272442888}
   m_Layer: 3
-  m_Name: RuneStone
+  m_Name: RuneStoneBlank
   m_TagString: RuneStone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -269.5, y: 203.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6542751513103875203
@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 5760511609584511895}
-  defaultParent: {fileID: 0}
 --- !u!225 &5760511609584511895
 CanvasGroup:
   m_ObjectHideFlags: 0

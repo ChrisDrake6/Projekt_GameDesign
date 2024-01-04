@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -17,10 +18,6 @@ public class PlayerStateManager : MonoBehaviour
     void Start()
     {
         compiler = Compiler.Instance;
-
-        // Center Player on starting tile
-        transform.position = tilemap.GetCellCenterLocal(tilemap.LocalToCell(transform.position));
-
         SwitchState(idleState);
     }
 
@@ -59,5 +56,16 @@ public class PlayerStateManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         currentState.OnCollisionEnter(this);
+    }
+
+    public void SetPlayerPosition(Vector3Int targetPosition)
+    {
+        transform.position = tilemap.GetCellCenterLocal(targetPosition);
+    }
+
+    public void ProgressToNextStage(Vector3 nextStartingPosition)
+    {
+        walkState.direction = nextStartingPosition;
+        SwitchState(walkState);
     }
 }

@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public CanvasGroup canvasGroup;
-    public Transform defaultParent;
 
+    Transform defaultParent;
     RectTransform rectTransform;
 
     bool wasClicked = false;
 
     void Awake()
     {
+        defaultParent = transform.parent;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
@@ -22,14 +24,14 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     public void OnBeginDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = false;
-        transform.SetParent(defaultParent);
 
         RuneStoneManager.Instance.DisplayPossibleSlots();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta;
+        //rectTransform.anchoredPosition += eventData.delta;
+        transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -37,7 +39,7 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
         canvasGroup.blocksRaycasts = true;
 
         // if it is not slotted, destroy it.
-        if (transform.parent == defaultParent)
+        if (transform.parent == defaultParent.parent)
         {
             Destroy(gameObject);
         }
@@ -53,16 +55,25 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
         if (!wasClicked)
         {
             wasClicked = true;
-            Instantiate(gameObject, rectTransform.parent);
+
+            int childindex = gameObject.transform.GetSiblingIndex();
+            transform.SetParent(transform.parent.parent);
+            GameObject clone = Instantiate(gameObject, defaultParent);
+            clone.transform.SetSiblingIndex(childindex);
+
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Gets triggered when the runestone gets hovered of an already slotted runestone
-        if (collision.gameObject.CompareTag("RuneStone") && transform.parent != defaultParent)
+        RuneStone other = collision.gameObject.GetComponent<RuneStone>();
+        if (other != null)
         {
-            RuneStoneManager.Instance.HandleListEnter(gameObject);
+            if (collision.gameObject.CompareTag("RuneStone") && transform.parent != defaultParent && other.wasClicked)
+            {
+                RuneStoneManager.Instance.HandleListEnter(gameObject);
+            }
         }
     }
 }

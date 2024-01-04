@@ -46,6 +46,12 @@ TagManager:
   - name: RuneSlots
     uniqueID: 2496615147
     locked: 0
+  - name: Path
+    uniqueID: 814905467
+    locked: 0
+  - name: Walls
+    uniqueID: 1465324509
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
