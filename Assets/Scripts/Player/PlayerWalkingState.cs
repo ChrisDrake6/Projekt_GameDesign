@@ -16,7 +16,14 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void EnterState(PlayerStateManager player)
     {
-        cellWidth = player.tilemap.cellSize.x;
+        if (direction.x != 0)
+        {
+            cellWidth = player.tilemap.cellSize.x;
+        }
+        else if (direction.y != 0)
+        {
+            cellWidth = player.tilemap.cellSize.y;
+        }
         currentDestination = player.tilemap.GetCellCenterLocal(player.tilemap.LocalToCell(player.transform.position + direction * length * cellWidth));
     }
 
@@ -27,5 +34,10 @@ public class PlayerWalkingState : PlayerBaseState
         {
             player.CallForNextOrder();
         }
+    }
+
+    public override void OnCollisionEnter(PlayerStateManager player)
+    {
+        player.CallForNextOrder();
     }
 }

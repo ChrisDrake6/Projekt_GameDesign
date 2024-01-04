@@ -55,4 +55,9 @@ public class PlayerStateManager : MonoBehaviour
             SwitchState(idleState);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        currentState.OnCollisionEnter(this);
+    }
 }
