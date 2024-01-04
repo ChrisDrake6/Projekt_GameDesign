@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerStateManager : MonoBehaviour
 {
-
+    public Tilemap tilemap;
 
     PlayerBaseState currentState;
     public PlayerIdleState idleState = new PlayerIdleState();
@@ -16,6 +17,10 @@ public class PlayerStateManager : MonoBehaviour
     void Start()
     {
         compiler = Compiler.Instance;
+
+        // Center Player on starting tile
+        transform.position = tilemap.GetCellCenterLocal(tilemap.LocalToCell(transform.position));
+
         SwitchState(idleState);
     }
 
