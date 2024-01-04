@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TooltipSystem : MonoBehaviour
 {
     private static TooltipSystem current;
-    public Image tooltip;
+    public Tooltip tooltip;
 
     public void Awake()
     {
         current = this;
     }
-    public static void Show()
+
+    //need content to show
+    public static void Show (string content, string header="")
     {
+        current.tooltip.SetText(content, header);
+
         current.tooltip.gameObject.SetActive(true);
     }
 
