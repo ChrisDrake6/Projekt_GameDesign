@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
             Instantiate(codeBlock, runeStoneContainer);
         }
 
+        CameraController.instance.SetTargetPosition(stages[currentStage].cameraPosition);
+
         // Clear RuneStones
         RuneStoneManager.Instance.Clear();
     }

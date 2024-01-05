@@ -57,11 +57,10 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
             wasClicked = true;
 
             int childindex = gameObject.transform.GetSiblingIndex();
-            transform.SetParent(transform.parent.parent);
             GameObject clone = Instantiate(gameObject, defaultParent);
             clone.transform.SetSiblingIndex(childindex);
-
         }
+        transform.SetParent(transform.parent.parent);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
