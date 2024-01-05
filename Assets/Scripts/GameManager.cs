@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public Tilemap pathMap;
 
+    bool success = false;
+
     // Public for testing purposes
     public int currentStage = 0;
 
@@ -26,17 +28,19 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ReLoadStage(currentStage);        
+        ReLoadStage(currentStage);
     }
 
     public void ReLoadStage(int index)
     {
         // Reset player postion to starting point
-        player.SetPlayerPosition(stages[currentStage].StartTile);
+        player.SetPlayerPosition(stages[currentStage].PlayerStartPosition);
         LoadStage(index);
     }
     public void LoadStage(int index)
-    {        
+    {
+        success = false;
+
         // Load CodeBlocks from Stage
         foreach (Transform child in runeStoneContainer.transform)
         {
@@ -50,7 +54,7 @@ public class GameManager : MonoBehaviour
             Instantiate(codeBlock, runeStoneContainer);
         }
 
-        CameraController.instance.SetTargetPosition(stages[currentStage].cameraPosition);
+        CameraController.instance.SetTargetPosition(stages[currentStage].cameraPosition, stages[currentStage].cameraSize);
 
         // Clear RuneStones
         RuneStoneManager.Instance.Clear();
@@ -58,14 +62,14 @@ public class GameManager : MonoBehaviour
 
     public void CheckForWin()
     {
-        if ( pathMap.LocalToCell(player.transform.position) == stages[currentStage].EndTile)
+        if (success)
         {
+            currentStage++;
             if (currentStage < stages.Count)
             {
-                currentStage++;
 
                 // Let player progress to next starting point
-                player.ProgressToNextStage(pathMap.CellToLocal(stages[currentStage].StartTile));
+                player.ProgressToNextStage(stages[currentStage].PlayerStartPosition);
 
                 LoadStage(currentStage);
             }
@@ -82,5 +86,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("Stage failed");
             ReLoadStage(currentStage);
         }
+    }
+
+    public void SetWinConditionAchieved()
+    {
+        success = true;
     }
 }

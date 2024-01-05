@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -24,7 +25,14 @@ public class PlayerWalkingState : PlayerBaseState
         {
             cellWidth = player.tilemap.cellSize.y;
         }
-        currentDestination = player.tilemap.GetCellCenterLocal(player.tilemap.LocalToCell(player.transform.position + direction * length * cellWidth));
+        if (!player.transitioningBetweenStages)
+        {
+            currentDestination = player.tilemap.GetCellCenterLocal(player.tilemap.LocalToCell(player.transform.position + direction * length * cellWidth));
+        }
+        else
+        {
+            currentDestination = direction;
+        }
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -32,7 +40,15 @@ public class PlayerWalkingState : PlayerBaseState
         player.transform.position = Vector2.MoveTowards(player.transform.position, currentDestination, speed * Time.deltaTime);
         if (currentDestination == player.transform.position)
         {
-            player.CallForNextOrder();
+            if (!player.transitioningBetweenStages)
+            {
+                player.CallForNextOrder();
+            }
+            else
+            {
+                player.transitioningBetweenStages = false;
+                player.SwitchState(player.idleState);
+            }
         }
     }
 

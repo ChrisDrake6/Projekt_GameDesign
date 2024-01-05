@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelStage : MonoBehaviour
 {
     public List<CodeBlock> availableCodeBlocks;
-    public Vector3Int StartTile;
-    public Vector3Int EndTile;
+    public Vector3 PlayerStartPosition;
     public Vector3 cameraPosition;
+    public float cameraSize;
 }

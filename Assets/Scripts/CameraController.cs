@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        currentTargetPosition = transform.position;
+        //currentTargetPosition = transform.position;
     }
 
     void Update()
@@ -27,8 +27,9 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    public void SetTargetPosition(Vector3 targetPosition)
+    public void SetTargetPosition(Vector3 targetPosition, float size)
     {
         currentTargetPosition = targetPosition;
+        Camera.main.orthographicSize = size;
     }
 }
