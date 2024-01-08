@@ -11,10 +11,10 @@ public class PlayerOpeningDoorState : PlayerBaseState
     {
         Vector3 origin = player.transform.position;
         origin.y -= rayCastOffset;
-               
+
         RaycastHit2D hit = Physics2D.Raycast(origin, player.walkState.direction, rayCastDistance);
-        
-        if(hit.transform != null && hit.transform.CompareTag("Door"))
+
+        if (hit.transform != null && hit.transform.CompareTag("Door"))
         {
             // TODO: Check for key
             GameManager.Instance.SetWinConditionAchieved();

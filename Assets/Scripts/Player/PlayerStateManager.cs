@@ -52,6 +52,10 @@ public class PlayerStateManager : MonoBehaviour
                     throw new Exception("CodeBlock unknown!");
             }
         }
+        else if(!transitioningBetweenStages)
+        { 
+            SwitchState(idleState); 
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
