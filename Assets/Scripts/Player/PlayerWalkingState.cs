@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class PlayerWalkingState : PlayerBaseState
 {
     public Vector3 direction = Vector3.zero;
-    float speed = 10;
+    public float rayCastDistance = 2;
+    public float rayCastOffset = 1.5F;
+    public float speed = 10;
+
     Vector3 currentDestination;
     float cellWidth;
 
@@ -17,6 +21,13 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void EnterState(PlayerStateManager player)
     {
+        Vector3 origin = player.transform.position;
+        origin.y -= rayCastOffset;
+        if (Physics2D.Raycast(origin, player.walkState.direction, rayCastDistance))
+        {
+            player.CheckForWin();
+            return;
+        }
         if (direction.x != 0)
         {
             cellWidth = player.tilemap.cellSize.x;

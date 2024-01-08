@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+
         foreach (CodeBlock codeBlock in stages[currentStage].availableCodeBlocks)
         {
             Instantiate(codeBlock, runeStoneContainer);

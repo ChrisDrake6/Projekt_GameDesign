@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// This is responsible for creating and managing slots for runestones.
@@ -40,7 +41,7 @@ public class RuneStoneManager : MonoBehaviour
         foreach (Transform child in transform)
         {
             if (child.gameObject.CompareTag("RuneStone"))
-                {
+            {
                 rayCastResults.Clear();
 
                 // calculate position of next possible slot
@@ -130,10 +131,11 @@ public class RuneStoneManager : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if(child.gameObject.CompareTag("RuneStone") && child.gameObject.name != "StartRune/Compiler")
+            if (child.gameObject.CompareTag("RuneStone") && child.gameObject.name != "StartRune/Compiler")
             {
                 Destroy(child.gameObject);
             }
+            Compiler.Instance.processRunning = false;
         }
     }
 }

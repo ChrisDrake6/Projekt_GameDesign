@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class Compiler : MonoBehaviour
 {
     public static Compiler Instance { get; private set; }
+    public bool processRunning = false;
 
     public Button button;
     public GraphicRaycaster graphicRaycaster;
@@ -20,7 +21,6 @@ public class Compiler : MonoBehaviour
 
     List<CodeBlock> codeBlocks = new List<CodeBlock>();
     int currentOrderIndex = 0;
-    bool processRunning = false;
     float offsetDistance;
 
     public Compiler()
@@ -86,9 +86,9 @@ public class Compiler : MonoBehaviour
         else
         {
             GameManager.Instance.CheckForWin();
-            processRunning = false;
             codeBlocks.Clear();
             currentOrderIndex = 0;
+            processRunning = false;
             return null;
         }
     }
