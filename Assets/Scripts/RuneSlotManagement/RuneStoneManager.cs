@@ -80,34 +80,37 @@ public class RuneStoneManager : MonoBehaviour
     /// The other runestone makes way for the new runestone by creating a slot at its location and moving down or up
     /// </summary>
     /// <param name="target"></param>
-    public void HandleListEnter(GameObject target)
+    public void HandleListEnter(GameObject target, GameObject other)
     {
-        int childIndex = target.transform.GetSiblingIndex();
-        GameObject formerChild = target.transform.parent.GetChild(childIndex - 1)?.gameObject;
-
-        // If the runestone has already moved down to make way, instead of creating a new slot, switch places with the indicator over it.
-        // This is necessary because there was a bug that this method wasn't called when i moved a slot form an indicator down to the just moved runeslot,
-        // resulting in the indicator still existing although it shouldn't.
-        if (formerChild != null && indicators.Contains(formerChild))
+        if (other.transform.CompareTag("RuneStone") && !other.GetComponent<RuneStone>().isSlotted)
         {
-            // Move target runestone up
-            //transform.SetSiblingIndex(childIndex - 1);
+            int childIndex = target.transform.GetSiblingIndex();
+            GameObject formerChild = target.transform.parent.GetChild(childIndex - 1)?.gameObject;
 
-            // if there already is an indicator, remove it. No need for two slots at the same location
-            GameObject nextChild = target.transform.parent.GetChild(childIndex - 1)?.gameObject;
-            if (nextChild != null && indicators.Contains(nextChild))
+            // If the runestone has already moved down to make way, instead of creating a new slot, switch places with the indicator over it.
+            // This is necessary because there was a bug that this method wasn't called when i moved a slot form an indicator down to the just moved runeslot,
+            // resulting in the indicator still existing although it shouldn't.
+            if (formerChild != null && indicators.Contains(formerChild))
             {
-                indicators.Remove(nextChild);
-                Destroy(nextChild);
+                // Move target runestone up
+                //transform.SetSiblingIndex(childIndex - 1);
+
+                // if there already is an indicator, remove it. No need for two slots at the same location
+                GameObject nextChild = target.transform.parent.GetChild(childIndex - 1)?.gameObject;
+                if (nextChild != null && indicators.Contains(nextChild))
+                {
+                    indicators.Remove(nextChild);
+                    Destroy(nextChild);
+                }
             }
-        }
-        else
-        {
-            // Create a slot
-            GameObject indicator = Instantiate(possibleSlotIndicator, target.transform.position, possibleSlotIndicator.transform.rotation, target.transform.parent);
-            // Move target runestone down
-            indicator.transform.SetSiblingIndex(childIndex);
-            indicators.Add(indicator);
+            else
+            {
+                // Create a slot
+                GameObject indicator = Instantiate(possibleSlotIndicator, target.transform.position, possibleSlotIndicator.transform.rotation, target.transform.parent);
+                // Move target runestone down
+                indicator.transform.SetSiblingIndex(childIndex);
+                indicators.Add(indicator);
+            }
         }
     }
 

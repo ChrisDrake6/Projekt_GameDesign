@@ -87,7 +87,7 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
         {
             if (collision.gameObject.CompareTag("RuneStone") && isSlotted && other.wasClicked)
             {
-                RuneStoneManager.Instance.HandleListEnter(gameObject);
+                RuneStoneManager.Instance.HandleListEnter(gameObject, collision.gameObject);
             }
         }
     }
