@@ -17,7 +17,7 @@ public class RuneStoneManager : MonoBehaviour
     public static RuneStoneManager Instance { get; private set; }
 
     public Transform runeStonesParent;
-    public GraphicRaycaster graphicRaycaster;
+    //public GraphicRaycaster graphicRaycaster;
     public GameObject possibleSlotIndicator;
 
     List<GameObject> indicators = new List<GameObject>();
@@ -34,32 +34,44 @@ public class RuneStoneManager : MonoBehaviour
     public void DisplayPossibleSlots()
     {
         // TODO: Deal with if and loop offsets
-        PointerEventData pointer = new PointerEventData(EventSystem.current);
-        List<RaycastResult> rayCastResults = new List<RaycastResult>();
-
-        foreach (Transform child in runeStonesParent)
+        Transform lastChild = runeStonesParent.GetChild(runeStonesParent.childCount - 1);
+        if (lastChild.gameObject.CompareTag("RuneStone") || lastChild.gameObject.CompareTag("StartRune"))
         {
-            if (child.gameObject.CompareTag("RuneStone") || child.gameObject.CompareTag("StartRune"))
-            {
-                rayCastResults.Clear();
-
-                // calculate position of next possible slot
-                float offsetDistance = child.gameObject.GetComponent<RectTransform>().sizeDelta.y * child.localScale.y;
-                Vector3 targetPosition = child.position;
-                targetPosition.y -= offsetDistance;
-
-                // check if at position is a runestone or an indicator
-                pointer.position = targetPosition;
-                graphicRaycaster.Raycast(pointer, rayCastResults);
-
-                if (rayCastResults.Where(result => result.gameObject.CompareTag("RuneStone") || result.gameObject.CompareTag("Indicator")).Count() == 0)
-                {
-                    // If nothing is found, create indicator
-                    GameObject indicator = Instantiate(possibleSlotIndicator, targetPosition, possibleSlotIndicator.transform.rotation, child.parent);
-                    indicators.Add(indicator);
-                }
-            }
+            // calculate position of next possible slot
+            float offsetDistance = lastChild.gameObject.GetComponent<RectTransform>().sizeDelta.y * lastChild.localScale.y;
+            Vector3 targetPosition = lastChild.position;
+            targetPosition.y -= offsetDistance;
+            GameObject indicator = Instantiate(possibleSlotIndicator, targetPosition, possibleSlotIndicator.transform.rotation, lastChild.parent);
+            indicators.Add(indicator);
         }
+
+        // TODO: Make this work? Does not work with scrollarea
+        //PointerEventData pointer = new PointerEventData(EventSystem.current);
+        //List<RaycastResult> rayCastResults = new List<RaycastResult>();
+
+        //foreach (Transform child in runeStonesParent)
+        //{
+        //if (child.gameObject.CompareTag("RuneStone") || child.gameObject.CompareTag("StartRune"))
+        //{
+        //rayCastResults.Clear();
+
+        //// calculate position of next possible slot
+        //float offsetDistance = child.gameObject.GetComponent<RectTransform>().sizeDelta.y * child.localScale.y;
+        //Vector3 targetPosition = child.position;
+        //targetPosition.y -= offsetDistance;
+
+        //// check if at position is a runestone or an indicator
+        //pointer.position = targetPosition;
+        //graphicRaycaster.Raycast(pointer, rayCastResults);
+
+        //if (rayCastResults.Where(result => result.gameObject.CompareTag("RuneStone") || result.gameObject.CompareTag("Indicator")).Count() == 0)
+        //{
+        //    // If nothing is found, create indicator
+        //    GameObject indicator = Instantiate(possibleSlotIndicator, targetPosition, possibleSlotIndicator.transform.rotation, child.parent);
+        //    indicators.Add(indicator);
+        //}
+        //}
+        //}
     }
 
     /// <summary>
