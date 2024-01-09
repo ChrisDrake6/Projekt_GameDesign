@@ -3394,6 +3394,7 @@ MonoBehaviour:
   - {fileID: 1845614370}
   player: {fileID: 1874153123}
   runeStoneContainer: {fileID: 1059697402}
+  pauseMenu: {fileID: 471346335}
   pathMap: {fileID: 2076175897}
   currentStage: 0
 --- !u!4 &605380822
@@ -3517,7 +3518,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3912,7 +3913,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5538,7 +5539,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runeStonesParent: {fileID: 1083728678}
-  graphicRaycaster: {fileID: 1302666866}
   possibleSlotIndicator: {fileID: 2101921349728472472, guid: 8645307f9bed4284780e6ab217d01d6d, type: 3}
 --- !u!4 &1070666328
 Transform:

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public List<LevelStage> stages = new List<LevelStage>();
     public PlayerStateManager player;
     public Transform runeStoneContainer;
-
+    public GameObject pauseMenu;
     public Tilemap pathMap;
 
     bool success = false;
@@ -29,6 +29,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ReLoadStage(currentStage);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
+        }
     }
 
     public void ReLoadStage(int index)
