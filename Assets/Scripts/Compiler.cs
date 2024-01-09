@@ -13,25 +13,27 @@ public class Compiler : MonoBehaviour
     public bool processRunning = false;
 
     public Button button;
-    public GraphicRaycaster graphicRaycaster;
+    //public GraphicRaycaster graphicRaycaster;
     public PlayerStateManager player;
+    public Transform codeBlocksParent;
 
-    PointerEventData pointer = new PointerEventData(EventSystem.current);
-    List<RaycastResult> rayCastResults = new List<RaycastResult>();
+    //PointerEventData pointer = new PointerEventData(EventSystem.current);
+    //List<RaycastResult> rayCastResults = new List<RaycastResult>();
 
     List<CodeBlock> codeBlocks = new List<CodeBlock>();
     int currentOrderIndex = 0;
-    float offsetDistance;
+    //float offsetDistance;
 
     public Compiler()
     {
         Instance = this;
     }
 
-    private void Start()
-    {
-        offsetDistance = GetComponent<RectTransform>().sizeDelta.y * transform.localScale.y;
-    }
+    //private void Start()
+    //{
+    //    offsetDistance = codeBlocksParent.GetChild(0).GetComponent<RectTransform>().sizeDelta.y * transform.localScale.y;
+    //}
+
     void Update()
     {
         if (!processRunning)
@@ -50,31 +52,40 @@ public class Compiler : MonoBehaviour
 
         // Get all Codeblocks
         // TODO: Get CodeBlocks from IFs and Loops
-        CodeBlock nextCodeBlocK = GetNextCodeBlock(transform.position);
-                
-        while (nextCodeBlocK != null)
+        foreach (Transform child in codeBlocksParent)
         {
-            codeBlocks.Add(nextCodeBlocK);
-            nextCodeBlocK = GetNextCodeBlock(nextCodeBlocK.transform.position);
+            if(child.CompareTag("RuneStone"))
+            {
+                codeBlocks.Add(child.GetComponent<CodeBlock>());
+            }
         }
+
+        //CodeBlock nextCodeBlocK = GetNextCodeBlock(transform.position);
+                
+        //while (nextCodeBlocK != null)
+        //{
+        //    codeBlocks.Add(nextCodeBlocK);
+        //    nextCodeBlocK = GetNextCodeBlock(nextCodeBlocK.transform.position);
+        //}
 
         player.CallForNextOrder();
     }
 
-    CodeBlock GetNextCodeBlock(Vector3 startingPosition)
-    {
-        rayCastResults.Clear();
+    // TODO: Make this work? Does not work with scrollarea
+    //CodeBlock GetNextCodeBlock(Vector3 startingPosition)
+    //{
+    //    rayCastResults.Clear();
 
-        // calculate position of next possible runestone
-        Vector3 targetPosition = startingPosition;
-        targetPosition.y -= offsetDistance;
+    //    // calculate position of next possible runestone
+    //    Vector3 targetPosition = startingPosition;
+    //    targetPosition.y -= offsetDistance;
 
-        // get next runestone
-        pointer.position = targetPosition;
-        graphicRaycaster.Raycast(pointer, rayCastResults);
+    //    // get next runestone
+    //    pointer.position = targetPosition;
+    //    graphicRaycaster.Raycast(pointer, rayCastResults);
 
-        return rayCastResults.FirstOrDefault(result => result.gameObject.CompareTag("RuneStone")).gameObject?.GetComponent<CodeBlock>();
-    }
+    //    return rayCastResults.FirstOrDefault(result => result.gameObject.CompareTag("RuneStone")).gameObject?.GetComponent<CodeBlock>();
+    //}
 
     public CodeBlock GetNextOrder()
     {

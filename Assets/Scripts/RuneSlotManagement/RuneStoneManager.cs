@@ -16,10 +16,9 @@ public class RuneStoneManager : MonoBehaviour
 {
     public static RuneStoneManager Instance { get; private set; }
 
+    public Transform runeStonesParent;
     public GraphicRaycaster graphicRaycaster;
-
     public GameObject possibleSlotIndicator;
-    public GameObject startRune;
 
     List<GameObject> indicators = new List<GameObject>();
 
@@ -38,9 +37,9 @@ public class RuneStoneManager : MonoBehaviour
         PointerEventData pointer = new PointerEventData(EventSystem.current);
         List<RaycastResult> rayCastResults = new List<RaycastResult>();
 
-        foreach (Transform child in transform)
+        foreach (Transform child in runeStonesParent)
         {
-            if (child.gameObject.CompareTag("RuneStone"))
+            if (child.gameObject.CompareTag("RuneStone") || child.gameObject.CompareTag("StartRune"))
             {
                 rayCastResults.Clear();
 
@@ -92,7 +91,7 @@ public class RuneStoneManager : MonoBehaviour
         if (formerChild != null && indicators.Contains(formerChild))
         {
             // Move target runestone up
-            transform.SetSiblingIndex(childIndex - 1);
+            //transform.SetSiblingIndex(childIndex - 1);
 
             // if there already is an indicator, remove it. No need for two slots at the same location
             GameObject nextChild = target.transform.parent.GetChild(childIndex - 1)?.gameObject;
@@ -119,7 +118,7 @@ public class RuneStoneManager : MonoBehaviour
     public void HandleListExit(GameObject target)
     {
         int index = target.transform.GetSiblingIndex();
-        if (index < gameObject.transform.childCount - 1)
+        if (index < runeStonesParent.childCount - 1)
         {
             //indicators.Remove(target);
             Destroy(target);
@@ -129,9 +128,9 @@ public class RuneStoneManager : MonoBehaviour
 
     public void Clear()
     {
-        foreach (Transform child in transform)
+        foreach (Transform child in runeStonesParent)
         {
-            if (child.gameObject.CompareTag("RuneStone") && child.gameObject.name != "StartRune/Compiler")
+            if (child.gameObject.CompareTag("RuneStone"))
             {
                 Destroy(child.gameObject);
             }
