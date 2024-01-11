@@ -7,7 +7,7 @@ TagManager:
   - RuneStone
   - Indicator
   - Door
-  - StartRune
+  - StartingPoint
   layers:
   - Default
   - TransparentFX

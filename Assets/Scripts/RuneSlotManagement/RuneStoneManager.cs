@@ -34,44 +34,9 @@ public class RuneStoneManager : MonoBehaviour
     public void DisplayPossibleSlots()
     {
         // TODO: Deal with if and loop offsets
-        Transform lastChild = runeStonesParent.GetChild(runeStonesParent.childCount - 1);
-        if (lastChild.gameObject.CompareTag("RuneStone") || lastChild.gameObject.CompareTag("StartRune"))
-        {
-            // calculate position of next possible slot
-            float offsetDistance = lastChild.gameObject.GetComponent<RectTransform>().sizeDelta.y * lastChild.localScale.y;
-            Vector3 targetPosition = lastChild.position;
-            targetPosition.y -= offsetDistance;
-            GameObject indicator = Instantiate(possibleSlotIndicator, targetPosition, possibleSlotIndicator.transform.rotation, lastChild.parent);
-            indicators.Add(indicator);
-        }
+        GameObject indicator = Instantiate(possibleSlotIndicator, Vector3.zero, possibleSlotIndicator.transform.rotation, runeStonesParent);
+        indicators.Add(indicator);
 
-        // TODO: Make this work? Does not work with scrollarea
-        //PointerEventData pointer = new PointerEventData(EventSystem.current);
-        //List<RaycastResult> rayCastResults = new List<RaycastResult>();
-
-        //foreach (Transform child in runeStonesParent)
-        //{
-        //if (child.gameObject.CompareTag("RuneStone") || child.gameObject.CompareTag("StartRune"))
-        //{
-        //rayCastResults.Clear();
-
-        //// calculate position of next possible slot
-        //float offsetDistance = child.gameObject.GetComponent<RectTransform>().sizeDelta.y * child.localScale.y;
-        //Vector3 targetPosition = child.position;
-        //targetPosition.y -= offsetDistance;
-
-        //// check if at position is a runestone or an indicator
-        //pointer.position = targetPosition;
-        //graphicRaycaster.Raycast(pointer, rayCastResults);
-
-        //if (rayCastResults.Where(result => result.gameObject.CompareTag("RuneStone") || result.gameObject.CompareTag("Indicator")).Count() == 0)
-        //{
-        //    // If nothing is found, create indicator
-        //    GameObject indicator = Instantiate(possibleSlotIndicator, targetPosition, possibleSlotIndicator.transform.rotation, child.parent);
-        //    indicators.Add(indicator);
-        //}
-        //}
-        //}
     }
 
     /// <summary>
@@ -91,34 +56,21 @@ public class RuneStoneManager : MonoBehaviour
     /// Gets called when a runestone gets hovered over an already slotted runestone
     /// The other runestone makes way for the new runestone by creating a slot at its location and moving down or up
     /// </summary>
-    /// <param name="target"></param>
-    public void HandleListEnter(GameObject target, GameObject other)
+    /// <param name="runeStoneToBeMoved"></param>
+    public void HandleListEnter(GameObject runeStoneToBeMoved, GameObject EnteringRuneStone)
     {
-        if (other.transform.CompareTag("RuneStone") && !other.GetComponent<RuneStone>().isSlotted)
+        if (EnteringRuneStone.transform.CompareTag("RuneStone") && !EnteringRuneStone.GetComponent<RuneStone>().isSlotted)
         {
-            int childIndex = target.transform.GetSiblingIndex();
-            GameObject formerChild = target.transform.parent.GetChild(childIndex - 1)?.gameObject;
+            int childIndex = runeStoneToBeMoved.transform.GetSiblingIndex();
+            Transform parent = runeStoneToBeMoved.transform.parent;
 
-            // If the runestone has already moved down to make way, instead of creating a new slot, switch places with the indicator over it.
+            // If the runestone has already moved down to make way, dont create a new slot.
             // This is necessary because there was a bug that this method wasn't called when i moved a slot form an indicator down to the just moved runeslot,
             // resulting in the indicator still existing although it shouldn't.
-            if (formerChild != null && indicators.Contains(formerChild))
-            {
-                // Move target runestone up
-                //transform.SetSiblingIndex(childIndex - 1);
-
-                // if there already is an indicator, remove it. No need for two slots at the same location
-                GameObject nextChild = target.transform.parent.GetChild(childIndex - 1)?.gameObject;
-                if (nextChild != null && indicators.Contains(nextChild))
-                {
-                    indicators.Remove(nextChild);
-                    Destroy(nextChild);
-                }
-            }
-            else
+            if (!(childIndex > 0 && indicators.Contains(parent.GetChild(childIndex - 1).gameObject)))
             {
                 // Create a slot
-                GameObject indicator = Instantiate(possibleSlotIndicator, target.transform.position, possibleSlotIndicator.transform.rotation, target.transform.parent);
+                GameObject indicator = Instantiate(possibleSlotIndicator, runeStoneToBeMoved.transform.position, possibleSlotIndicator.transform.rotation, runeStoneToBeMoved.transform.parent);
                 // Move target runestone down
                 indicator.transform.SetSiblingIndex(childIndex);
                 indicators.Add(indicator);
