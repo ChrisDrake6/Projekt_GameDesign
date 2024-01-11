@@ -6,7 +6,17 @@ using UnityEngine.UI;
 
 public class RuneSlotIndicatorPositive : MonoBehaviour, IDropHandler
 {
+    public Color defaultColor = Color.green;
+    public Color hoverColor = Color.blue;
+    
     bool justInitialized = true;
+    Image imageComponent;
+
+    private void Start()
+    {
+        imageComponent = GetComponent<Image>();
+        imageComponent.color = defaultColor;
+    }
 
     private void Update()
     {
@@ -30,10 +40,19 @@ public class RuneSlotIndicatorPositive : MonoBehaviour, IDropHandler
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("RuneStone"))
+        {
+            imageComponent.color = hoverColor;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("RuneStone"))
         {
+            imageComponent.color = defaultColor;
             RuneStoneManager.Instance.HandleListExit(gameObject);
         }
     }
