@@ -64,9 +64,6 @@ public class GameManager : MonoBehaviour
         }
 
         CameraController.instance.SetTargetPosition(stages[currentStage].cameraPosition, stages[currentStage].cameraSize);
-
-        // Clear RuneStones
-        RuneStoneManager.Instance.Clear();
     }
 
     public void CheckForWin()
@@ -79,6 +76,9 @@ public class GameManager : MonoBehaviour
 
                 // Let player progress to next starting point
                 player.ProgressToNextStage(stages[currentStage].PlayerStartPosition);
+
+                // Clear RuneStones
+                RuneStoneManager.Instance.Clear();
 
                 LoadStage(currentStage);
             }

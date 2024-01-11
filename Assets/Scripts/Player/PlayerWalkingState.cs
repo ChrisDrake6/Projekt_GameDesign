@@ -24,7 +24,8 @@ public class PlayerWalkingState : PlayerBaseState
         origin.y -= rayCastOffset;
         if (Physics2D.Raycast(origin, player.walkState.direction, rayCastDistance))
         {
-            player.CheckForWin();
+            //ToDo: Make this a losing condition? This would mean a move order too much has been called.
+            player.CallForNextOrder();
             return;
         }
         if (direction.x != 0)
