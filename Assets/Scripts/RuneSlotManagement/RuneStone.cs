@@ -12,12 +12,35 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
 
     bool wasClicked = false;
 
+
     Compiler compiler;
 
     void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         compiler = Compiler.Instance;
+    }
+
+    /// <summary>
+    /// create a clone of the runeslot as new pickup.
+    /// </summary>
+    /// <param name="eventData"></param>
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (compiler.processRunning)
+        {
+            return;
+        }
+        if (!wasClicked)
+        {
+            wasClicked = true;
+
+            int childindex = gameObject.transform.GetSiblingIndex();
+            GameObject clone = Instantiate(gameObject, transform.parent);
+            clone.transform.SetSiblingIndex(childindex);
+        }
+        GameObject canvas = GameObject.Find("Canvas");
+        transform.SetParent(canvas.transform);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -57,28 +80,7 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
         }
         RuneStoneManager.Instance.ResetDisplayOfPossibleSlots();
     }
-
-    /// <summary>
-    /// create a clone of the runeslot as new pickup.
-    /// </summary>
-    /// <param name="eventData"></param>
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (compiler.processRunning)
-        {
-            return;
-        }
-        if (!wasClicked)
-        {
-            wasClicked = true;
-
-            int childindex = gameObject.transform.GetSiblingIndex();
-            GameObject clone = Instantiate(gameObject, transform.parent);
-            clone.transform.SetSiblingIndex(childindex);
-        }
-        transform.SetParent(transform.parent.parent);
-    }
-
+       
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Gets triggered when the runestone gets hovered of an already slotted runestone
