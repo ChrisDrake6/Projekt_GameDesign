@@ -15,14 +15,13 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void EnterState(PlayerStateManager player)
     {
-        Vector3 origin = player.transform.position;
-        origin.y -= rayCastOffset;
-        if (Physics2D.Raycast(origin, player.walkState.direction, rayCastDistance))
-        {
-            //ToDo: Make this a losing condition? This would mean a move order too much has been called.
-            player.CallForNextOrder();
-            return;
-        }
+        // This is buggy. Move a check like that to the Collision?
+        //if (Physics2D.Raycast(player.transform.position, player.walkState.direction, rayCastDistance))
+        //{
+        //    //ToDo: Make this a losing condition? This would mean a move order too much has been called.
+        //    player.CallForNextOrder();
+        //    return;
+        //}
 
         SpriteRenderer spriteRenderer = player.GetComponent<SpriteRenderer>();
         if (direction.x < 0)
@@ -62,7 +61,7 @@ public class PlayerWalkingState : PlayerBaseState
                 // TODO: Remove this! Quick and dirty
                 // Set Collider at Entrance to block bachtracking
                 player.wallmap.SetTile(
-                    player.wallmap.LocalToCell(new Vector3(player.transform.position.x - cellWidth, player.transform.position.y - player.transform.lossyScale.y / 2 - 1, 0)),
+                    player.wallmap.LocalToCell(new Vector3(player.transform.position.x - cellWidth, player.transform.position.y, 0)),
                     player.tileForEntranceBlocking);
 
                 player.SwitchState(player.idleState);

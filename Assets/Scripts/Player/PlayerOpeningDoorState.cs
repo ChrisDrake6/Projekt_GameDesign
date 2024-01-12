@@ -5,14 +5,10 @@ using UnityEngine;
 public class PlayerOpeningDoorState : PlayerBaseState
 {
     public float rayCastDistance = 2;
-    public float rayCastOffset = 1.5F;
 
     public override void EnterState(PlayerStateManager player)
     {
-        Vector3 origin = player.transform.position;
-        origin.y -= rayCastOffset;
-
-        RaycastHit2D hit = Physics2D.Raycast(origin, player.walkState.direction, rayCastDistance);
+        RaycastHit2D hit = Physics2D.Raycast(player.transform.position, player.walkState.direction, rayCastDistance);
 
         if (hit.transform != null && hit.transform.CompareTag("Door"))
         {

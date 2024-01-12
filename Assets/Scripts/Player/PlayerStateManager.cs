@@ -70,7 +70,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public void SetPlayerPosition(Vector3 targetPosition)
     {
-        transform.position = tilemap.GetCellCenterLocal(tilemap.LocalToCell(targetPosition));
+        transform.position = targetPosition;
     }
 
     public void ProgressToNextStage(Vector3 nextStartingPosition)
