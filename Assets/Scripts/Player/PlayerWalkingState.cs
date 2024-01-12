@@ -4,7 +4,6 @@ public class PlayerWalkingState : PlayerBaseState
 {
     public Vector3 direction = Vector3.zero;
     public float rayCastDistance = 2;
-    public float rayCastOffset = 1.5F;
     public float speed = 10;
 
     Vector3 currentDestination;
@@ -15,22 +14,21 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void EnterState(PlayerStateManager player)
     {
-        // This is buggy. Move a check like that to the Collision?
-        //if (Physics2D.Raycast(player.transform.position, player.walkState.direction, rayCastDistance))
-        //{
-        //    //ToDo: Make this a losing condition? This would mean a move order too much has been called.
-        //    player.CallForNextOrder();
-        //    return;
-        //}
+        LayerMask mask = LayerMask.GetMask("Interactable", "Obstacles");
+        if (Physics2D.Raycast(player.transform.position, player.walkState.direction, rayCastDistance, mask))
+        {
+            GameManager.Instance.ValidateUserInput(false);
+            player.SwitchState(player.idleState);
+            return;
+        }
 
-        SpriteRenderer spriteRenderer = player.GetComponent<SpriteRenderer>();
         if (direction.x < 0)
         {
-            spriteRenderer.flipX = true;
+            player.spriteRenderer.flipX = true;
         }
         else if (direction.x > 0)
         {
-            spriteRenderer.flipX = false;
+            player.spriteRenderer.flipX = false;
         }
 
         cellWidth = player.tilemap.cellSize.y;

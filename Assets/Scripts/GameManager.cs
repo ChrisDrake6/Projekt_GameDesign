@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         }
 
         CameraController.instance.SetTargetPosition(stages[currentStage].cameraPosition, stages[currentStage].cameraSize);
+        Compiler.Instance.processRunning = false;
     }
 
     public void ValidateUserInput(bool success)

@@ -12,6 +12,7 @@ public class PlayerStateManager : MonoBehaviour
     // TODO: Remove this! Quick and dirty
     public Tilemap wallmap;
     public TileBase tileForEntranceBlocking;
+    public SpriteRenderer spriteRenderer;
 
     public bool transitioningBetweenStages = false;
 
@@ -20,7 +21,9 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerWalkingState walkState = new PlayerWalkingState();
     public PlayerOpeningDoorState openDoorState = new PlayerOpeningDoorState();
 
+    bool flippedOnDefault;
     Compiler compiler;
+
 
     void Start()
     {
@@ -71,10 +74,12 @@ public class PlayerStateManager : MonoBehaviour
     public void SetPlayerPosition(Vector3 targetPosition)
     {
         transform.position = targetPosition;
+        spriteRenderer.flipX = flippedOnDefault;
     }
 
     public void ProgressToNextStage(Vector3 nextStartingPosition)
     {
+        flippedOnDefault = spriteRenderer.flipX;
         transitioningBetweenStages = true;
         walkState.direction = nextStartingPosition;
         SwitchState(walkState);

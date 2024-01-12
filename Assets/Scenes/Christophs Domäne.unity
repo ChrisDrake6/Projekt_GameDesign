@@ -3689,7 +3689,7 @@ MonoBehaviour:
   runeStoneContainer: {fileID: 1059697402}
   pauseMenu: {fileID: 471346335}
   pathMap: {fileID: 2076175897}
-  currentStage: 1
+  currentStage: 2
   progressing: 0
 --- !u!4 &605380822
 Transform:
@@ -4037,6 +4037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6290209432914120546, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Size.y
       value: 2
@@ -4110,6 +4114,10 @@ PrefabInstance:
     - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Name
       value: Obstacle1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6290209432914120546, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Size.y
@@ -5375,6 +5383,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6290209432914120546, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Size.y
       value: 2
@@ -5577,6 +5589,10 @@ PrefabInstance:
     - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Name
       value: Obstacle1 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6290209432914120546, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Size.y
@@ -6400,6 +6416,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6290209432914120546, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Size.y
       value: 2
@@ -6886,6 +6906,10 @@ PrefabInstance:
     - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Name
       value: Obstacle1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6290209432914120546, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Size.y
@@ -7474,6 +7498,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6290209432914120546, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Size.y
       value: 2
@@ -8017,7 +8045,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &1874153122
 BoxCollider2D:
@@ -8079,6 +8107,7 @@ MonoBehaviour:
   tilemap: {fileID: 2076175897}
   wallmap: {fileID: 70577156}
   tileForEntranceBlocking: {fileID: 11400000, guid: a3d7d86158194e5449d073be0a861864, type: 2}
+  spriteRenderer: {fileID: 1874153124}
   transitioningBetweenStages: 0
 --- !u!212 &1874153124
 SpriteRenderer:
@@ -11687,6 +11716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6290209432914120546, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Size.y
       value: 2
@@ -11848,6 +11881,10 @@ PrefabInstance:
     - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Name
       value: Obstacle1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842295677445373244, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6290209432914120546, guid: c7db0d6076b5e6d4faf628001a745e9b, type: 3}
       propertyPath: m_Size.y
