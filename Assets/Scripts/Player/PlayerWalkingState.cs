@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 public class PlayerWalkingState : PlayerBaseState
 {
@@ -30,12 +25,12 @@ public class PlayerWalkingState : PlayerBaseState
         }
 
         SpriteRenderer spriteRenderer = player.GetComponent<SpriteRenderer>();
-        if(direction.x < 0)
+        if (direction.x < 0)
         {
             spriteRenderer.flipX = true;
         }
-        else if(direction.x > 0) 
-        { 
+        else if (direction.x > 0)
+        {
             spriteRenderer.flipX = false;
         }
 
@@ -63,6 +58,13 @@ public class PlayerWalkingState : PlayerBaseState
             else
             {
                 player.transitioningBetweenStages = false;
+
+                // TODO: Remove this! Quick and dirty
+                // Set Collider at Entrance to block bachtracking
+                player.wallmap.SetTile(
+                    player.wallmap.LocalToCell(new Vector3(player.transform.position.x - cellWidth, player.transform.position.y - player.transform.lossyScale.y / 2 - 1, 0)),
+                    player.tileForEntranceBlocking);
+
                 player.SwitchState(player.idleState);
             }
         }

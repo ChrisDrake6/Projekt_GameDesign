@@ -8001,6 +8001,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 2076175897}
+  wallmap: {fileID: 70577156}
+  tileForEntranceBlocking: {fileID: 11400000, guid: a3d7d86158194e5449d073be0a861864, type: 2}
   transitioningBetweenStages: 0
 --- !u!212 &1874153124
 SpriteRenderer:

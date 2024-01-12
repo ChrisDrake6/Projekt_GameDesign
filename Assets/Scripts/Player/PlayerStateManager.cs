@@ -8,6 +8,11 @@ using UnityEngine.UIElements;
 public class PlayerStateManager : MonoBehaviour
 {
     public Tilemap tilemap;
+
+    // TODO: Remove this! Quick and dirty
+    public Tilemap wallmap;
+    public TileBase tileForEntranceBlocking;
+
     public bool transitioningBetweenStages = false;
 
     PlayerBaseState currentState;
