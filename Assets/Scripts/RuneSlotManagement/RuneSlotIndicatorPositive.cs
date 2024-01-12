@@ -18,15 +18,15 @@ public class RuneSlotIndicatorPositive : MonoBehaviour, IDropHandler
         imageComponent.color = defaultColor;
     }
 
-    private void Update()
-    {
-        if (transform.GetSiblingIndex() == transform.parent.childCount - 1 && justInitialized)
-        {
-            ScrollRect scrollRect = GameObject.Find("Scrollarea").GetComponent<ScrollRect>();
-            scrollRect.verticalNormalizedPosition = 0;
-            justInitialized = false;
-        }
-    }
+    //private void Update()
+    //{
+    //    if (transform.GetSiblingIndex() == transform.parent.childCount - 1 && justInitialized)
+    //    {
+    //        ScrollRect scrollRect = GameObject.Find("Scrollarea").GetComponent<ScrollRect>();
+    //        scrollRect.verticalNormalizedPosition = 0;
+    //        justInitialized = false;
+    //    }
+    //}
 
     public void OnDrop(PointerEventData eventData)
     {

@@ -93,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 5760511609584511895}
   isSlotted: 0
+  shortcutDirectlyAddRuneStone: 304
 --- !u!225 &5760511609584511895
 CanvasGroup:
   m_ObjectHideFlags: 0

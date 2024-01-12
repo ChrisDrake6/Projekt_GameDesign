@@ -4,22 +4,26 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public CanvasGroup canvasGroup;
     public bool isSlotted = false;
 
-    bool wasClicked = false;
+    public KeyCode shortcutDirectlyAddRuneStone;
 
+    bool wasClicked = false;
 
     Compiler compiler;
 
-    void Awake()
+    void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         compiler = Compiler.Instance;
     }
+
+
 
     /// <summary>
     /// create a clone of the runeslot as new pickup.
@@ -27,29 +31,37 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     /// <param name="eventData"></param>
     public void OnPointerDown(PointerEventData eventData)
     {
+
         if (compiler.processRunning)
         {
             return;
         }
-        if (!wasClicked)
-        {
-            wasClicked = true;
 
-            int childindex = gameObject.transform.GetSiblingIndex();
-            GameObject clone = Instantiate(gameObject, transform.parent);
-            clone.transform.SetSiblingIndex(childindex);
+        if (Input.GetKey(shortcutDirectlyAddRuneStone))
+        {
+            Clone();
+            wasClicked = true;
+            isSlotted = true;
+            RuneStoneManager.Instance.AddRuneStone(gameObject);
         }
-        GameObject canvas = GameObject.Find("Canvas");
-        transform.SetParent(canvas.transform);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        isSlotted = false;
         if (compiler.processRunning)
         {
             return;
         }
+
+        if (!wasClicked)
+        {
+            Clone();
+            wasClicked = true;
+        }
+        GameObject canvas = GameObject.Find("Canvas");
+        transform.SetParent(canvas.transform);
+        isSlotted = false;
+
         canvasGroup.blocksRaycasts = false;
 
         RuneStoneManager.Instance.DisplayPossibleSlots();
@@ -80,7 +92,7 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
         }
         RuneStoneManager.Instance.ResetDisplayOfPossibleSlots();
     }
-       
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Gets triggered when the runestone gets hovered of an already slotted runestone
@@ -92,5 +104,15 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
                 RuneStoneManager.Instance.HandleListEnter(gameObject, collision.gameObject);
             }
         }
+    }
+
+    /// <summary>
+    /// Create Clone of RuneStone to be picked up next
+    /// </summary>
+    public void Clone()
+    {
+        int childindex = gameObject.transform.GetSiblingIndex();
+        GameObject clone = Instantiate(gameObject, transform.parent);
+        clone.transform.SetSiblingIndex(childindex);
     }
 }

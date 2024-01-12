@@ -5535,6 +5535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6953a68efe3a1304ab24bb1b7a35793f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scroller: {fileID: 1209371595}
+  scollSnapToBottomDelay: 0.02
   runeStonesParent: {fileID: 1083728678}
   possibleSlotIndicator: {fileID: 2101921349728472472, guid: 8645307f9bed4284780e6ab217d01d6d, type: 3}
 --- !u!4 &1070666328
@@ -5908,7 +5910,19 @@ MonoBehaviour:
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1070666327}
+        m_TargetAssemblyTypeName: RuneStoneManager, Assembly-CSharp
+        m_MethodName: OnScrollAreaChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1209371596
 CanvasRenderer:
   m_ObjectHideFlags: 0

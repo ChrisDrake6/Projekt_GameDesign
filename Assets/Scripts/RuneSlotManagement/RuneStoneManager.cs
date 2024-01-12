@@ -14,6 +14,8 @@ using UnityEngine.UIElements;
 /// </summary>
 public class RuneStoneManager : MonoBehaviour
 {
+    public ScrollRect scroller;
+    public float scollSnapToBottomDelay = 0.05F;
     public static RuneStoneManager Instance { get; private set; }
 
     public Transform runeStonesParent;
@@ -28,6 +30,16 @@ public class RuneStoneManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Directly adds RuneStone on user input
+    /// </summary>
+    /// <param name="runeStone"></param>
+    public void AddRuneStone(GameObject runeStone)
+    {
+        runeStone.transform.SetParent(runeStonesParent);
+        Invoke("SnapScrollerToBottom", scollSnapToBottomDelay);
+    }
+
+    /// <summary>
     /// Gets called when a runestone is picked up
     /// Displays all possible drop locations for runestones by creating slots there
     /// </summary>
@@ -36,7 +48,7 @@ public class RuneStoneManager : MonoBehaviour
         // TODO: Deal with if and loop offsets
         GameObject indicator = Instantiate(possibleSlotIndicator, Vector3.zero, possibleSlotIndicator.transform.rotation, runeStonesParent);
         indicators.Add(indicator);
-
+        Invoke("SnapScrollerToBottom", scollSnapToBottomDelay);
     }
 
     /// <summary>
@@ -92,7 +104,6 @@ public class RuneStoneManager : MonoBehaviour
         }
     }
 
-
     public void Clear()
     {
         foreach (Transform child in runeStonesParent)
@@ -103,5 +114,10 @@ public class RuneStoneManager : MonoBehaviour
             }
             Compiler.Instance.processRunning = false;
         }
+    }
+
+    public void SnapScrollerToBottom()
+    {
+        scroller.verticalNormalizedPosition = 0;
     }
 }
