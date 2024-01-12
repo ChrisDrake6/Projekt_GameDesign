@@ -8,7 +8,8 @@ public class PlayerOpeningDoorState : PlayerBaseState
 
     public override void EnterState(PlayerStateManager player)
     {
-        RaycastHit2D hit = Physics2D.Raycast(player.transform.position, player.walkState.direction, rayCastDistance);
+        LayerMask mask = LayerMask.GetMask("Interactable");
+        RaycastHit2D hit = Physics2D.Raycast(player.transform.position, player.walkState.direction, rayCastDistance, mask);
 
         if (hit.transform != null && hit.transform.CompareTag("Door"))
         {
