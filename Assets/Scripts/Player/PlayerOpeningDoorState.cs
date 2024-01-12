@@ -14,10 +14,13 @@ public class PlayerOpeningDoorState : PlayerBaseState
         if (hit.transform != null && hit.transform.CompareTag("Door"))
         {
             // TODO: Check for key
-            GameManager.Instance.SetWinConditionAchieved();
             hit.transform.gameObject.SetActive(false);
+            GameManager.Instance.ValidateUserInput(true);
         }
-        player.CallForNextOrder();
+        else
+        {
+            // TODO: Losing condition
+        }
     }
 
     public override void OnCollisionEnter(PlayerStateManager player)

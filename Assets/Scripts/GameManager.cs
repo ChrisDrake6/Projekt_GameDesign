@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,10 +12,9 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     public Tilemap pathMap;
 
-    bool success = false;
-
     // Public for testing purposes
     public int currentStage = 0;
+    public bool progressing = false;
 
     public GameManager()
     {
@@ -33,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
         }
@@ -47,8 +42,6 @@ public class GameManager : MonoBehaviour
     }
     public void LoadStage(int index)
     {
-        success = false;
-
         // Load CodeBlocks from Stage
         foreach (Transform child in runeStoneContainer.transform)
         {
@@ -66,39 +59,38 @@ public class GameManager : MonoBehaviour
         CameraController.instance.SetTargetPosition(stages[currentStage].cameraPosition, stages[currentStage].cameraSize);
     }
 
-    public void CheckForWin()
+    public void ValidateUserInput(bool success)
     {
-        if (success)
+        if (!progressing)
         {
-            currentStage++;
-            if (currentStage < stages.Count)
+            if (success)
             {
+                currentStage++;
+                if (currentStage < stages.Count)
+                {
 
-                // Let player progress to next starting point
-                player.ProgressToNextStage(stages[currentStage].PlayerStartPosition);
+                    // Let player progress to next starting point
+                    player.ProgressToNextStage(stages[currentStage].PlayerStartPosition);
 
-                // Clear RuneStones
-                RuneStoneManager.Instance.Clear();
+                    // Clear RuneStones
+                    RuneStoneManager.Instance.Clear();
 
-                LoadStage(currentStage);
+                    LoadStage(currentStage);
+                }
+                else
+                {
+                    // All Stages Completed
+                    Debug.Log("Victory!");
+
+                    // Load next Level
+                }
+                progressing = true;
             }
             else
             {
-                // All Stages Completed
-                Debug.Log("Victory!");
-
-                // Load next Level
+                Debug.Log("Stage failed");
+                ReLoadStage(currentStage);
             }
         }
-        else
-        {
-            Debug.Log("Stage failed");
-            ReLoadStage(currentStage);
-        }
-    }
-
-    public void SetWinConditionAchieved()
-    {
-        success = true;
     }
 }

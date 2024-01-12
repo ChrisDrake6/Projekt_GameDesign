@@ -79,10 +79,4 @@ public class PlayerStateManager : MonoBehaviour
         walkState.direction = nextStartingPosition;
         SwitchState(walkState);
     }
-
-    public void CheckForWin()
-    {
-        SwitchState(idleState);
-        GameManager.Instance.CheckForWin();
-    }
 }

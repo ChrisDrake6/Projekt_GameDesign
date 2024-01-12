@@ -37,7 +37,7 @@ public class PlayerWalkingState : PlayerBaseState
 
         if (!player.transitioningBetweenStages)
         {
-            currentDestination = player.tilemap.GetCellCenterLocal(player.tilemap.LocalToCell(player.transform.position + direction * length * cellWidth));
+            currentDestination = player.transform.position + direction * length * cellWidth;
         }
         else
         {
@@ -65,6 +65,8 @@ public class PlayerWalkingState : PlayerBaseState
                     player.tileForEntranceBlocking);
 
                 player.SwitchState(player.idleState);
+
+                GameManager.Instance.progressing = false;
             }
         }
     }

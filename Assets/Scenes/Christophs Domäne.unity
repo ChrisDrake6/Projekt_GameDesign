@@ -3301,8 +3301,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1954502458}
   - {fileID: 1723547210}
+  - {fileID: 1954502458}
   m_Father: {fileID: 2146321418}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3699,7 +3699,8 @@ MonoBehaviour:
   runeStoneContainer: {fileID: 1059697402}
   pauseMenu: {fileID: 471346335}
   pathMap: {fileID: 2076175897}
-  currentStage: 0
+  currentStage: 1
+  progressing: 0
 --- !u!4 &605380822
 Transform:
   m_ObjectHideFlags: 0
@@ -7412,7 +7413,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   processRunning: 0
-  button: {fileID: 1723547211}
+  compileButton: {fileID: 1723547211}
+  clearButton: {fileID: 1954502459}
   player: {fileID: 1874153123}
   codeBlocksParent: {fileID: 1083728678}
 --- !u!4 &1665900647

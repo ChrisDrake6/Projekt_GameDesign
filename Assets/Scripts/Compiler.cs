@@ -12,7 +12,8 @@ public class Compiler : MonoBehaviour
     public static Compiler Instance { get; private set; }
     public bool processRunning = false;
 
-    public Button button;
+    public Button compileButton;
+    public Button clearButton;
     //public GraphicRaycaster graphicRaycaster;
     public PlayerStateManager player;
     public Transform codeBlocksParent;
@@ -36,13 +37,15 @@ public class Compiler : MonoBehaviour
 
     void Update()
     {
-        if (!processRunning)
+        if (!processRunning && !GameManager.Instance.progressing)
         {
-            button.interactable = true;
+            compileButton.interactable = true;
+            clearButton.interactable = true;
         }
         else
         {
-            button.interactable = false;
+            compileButton.interactable = false;
+            clearButton.interactable = false;
         }
     }
 
@@ -96,7 +99,7 @@ public class Compiler : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.CheckForWin();
+            GameManager.Instance.ValidateUserInput(false);
             codeBlocks.Clear();
             currentOrderIndex = 0;
             processRunning = false;
