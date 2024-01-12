@@ -39,10 +39,17 @@ public class RuneStone : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
 
         if (Input.GetKey(shortcutDirectlyAddRuneStone))
         {
-            Clone();
-            wasClicked = true;
-            isSlotted = true;
-            RuneStoneManager.Instance.AddRuneStone(gameObject);
+            if (!isSlotted)
+            {
+                Clone();
+                wasClicked = true;
+                isSlotted = true;
+                RuneStoneManager.Instance.AddRuneStone(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
