@@ -28,14 +28,19 @@ public class PlayerWalkingState : PlayerBaseState
             player.CallForNextOrder();
             return;
         }
-        if (direction.x != 0)
+
+        SpriteRenderer spriteRenderer = player.GetComponent<SpriteRenderer>();
+        if(direction.x < 0)
         {
-            cellWidth = player.tilemap.cellSize.x;
+            spriteRenderer.flipX = true;
         }
-        else if (direction.y != 0)
-        {
-            cellWidth = player.tilemap.cellSize.y;
+        else if(direction.x > 0) 
+        { 
+            spriteRenderer.flipX = false;
         }
+
+        cellWidth = player.tilemap.cellSize.y;
+
         if (!player.transitioningBetweenStages)
         {
             currentDestination = player.tilemap.GetCellCenterLocal(player.tilemap.LocalToCell(player.transform.position + direction * length * cellWidth));
