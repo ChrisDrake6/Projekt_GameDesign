@@ -17,7 +17,7 @@ public class PlayerWalkingState : PlayerBaseState
         LayerMask mask = LayerMask.GetMask("Interactable", "Obstacles");
         if (Physics2D.Raycast(player.transform.position, player.walkState.direction, rayCastDistance, mask))
         {
-            GameManager.Instance.ValidateUserInput(false);
+            GameManager.Instance.ValidateUserInput(false, "I cannot walk through walls, you know?");
             player.SwitchState(player.idleState);
             return;
         }

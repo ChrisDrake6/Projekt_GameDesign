@@ -15,11 +15,12 @@ public class PlayerOpeningDoorState : PlayerBaseState
         {
             // TODO: Check for key
             hit.transform.gameObject.SetActive(false);
-            GameManager.Instance.ValidateUserInput(true);
+            GameManager.Instance.ValidateUserInput(true, "");
         }
         else
         {
-            // TODO: Losing condition
+            GameManager.Instance.ValidateUserInput(false, "There was no door!");
+            player.SwitchState(player.idleState);
         }
     }
 

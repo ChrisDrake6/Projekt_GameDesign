@@ -15,7 +15,7 @@ public class Obstacle : MonoBehaviour
     void Update()
     {
         LayerMask mask = LayerMask.GetMask("Player");
-        if (Physics2D.BoxCast(new Vector2(transform.position.x, transform.position.y - transform.lossyScale.y / 2), new Vector2(2, 2), 0, Vector2.down, 2, mask))
+        if (Physics2D.BoxCast(new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.size.y / 2), new Vector2(2, 2), 0, Vector2.down, 2, mask))
         {
             spriteRenderer.sortingLayerID = SortingLayer.NameToID("Walls");
         }

@@ -14,10 +14,10 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     //mouse over object? show/hide tooltip
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipSystem.Show(content, header);
+        PopupTextSystem.Instance.ShowToolTip(content, header);
     }
     public void OnPointerExit(PointerEventData eventData) 
     {
-        TooltipSystem.Hide();
+        PopupTextSystem.Instance.HideToolTip();
     }
 }

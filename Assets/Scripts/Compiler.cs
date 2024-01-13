@@ -99,7 +99,7 @@ public class Compiler : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.ValidateUserInput(false);
+            GameManager.Instance.ValidateUserInput(false, "I did not make it to the door.");
             codeBlocks.Clear();
             currentOrderIndex = 0;
             processRunning = false;
