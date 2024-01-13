@@ -8,5 +8,5 @@ public class LevelStage : MonoBehaviour
     public Vector3 PlayerStartPosition;
     public Vector3 cameraPosition;
     public float cameraSize;
-    public string pathToIntroTextLines;
+    public string[] introTextLines;
 }

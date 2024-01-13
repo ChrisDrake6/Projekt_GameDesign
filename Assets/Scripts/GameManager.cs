@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SetIntroTextLines();
         ReLoadStage(currentStage);
         LoadIntroText();
     }
@@ -64,10 +65,7 @@ public class GameManager : MonoBehaviour
 
     void LoadIntroText()
     {
-        string path = Application.dataPath + "/IntroTextLines/" + stages[currentStage].pathToIntroTextLines;
-        string introTextLinesCompressed = File.ReadAllText(path);
-        string[] introTextLines = introTextLinesCompressed.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);
-        PopupTextSystem.Instance.AddPlayerText(introTextLines);
+        PopupTextSystem.Instance.AddPlayerText(stages[currentStage].introTextLines);
     }
 
     public void ValidateUserInput(bool success, string message)
@@ -108,5 +106,37 @@ public class GameManager : MonoBehaviour
                 ReLoadStage(currentStage);
             }
         }
+    }
+
+    /// <summary>
+    /// TODO: Move those somewhere else.
+    /// Moving those into a file didnt work, so i put them here. 
+    /// </summary>
+    void SetIntroTextLines()
+    {
+        stages[0].introTextLines = new string[] {
+            "Ouch, My Main Processing Unit hurts!",
+            "Where am I?\nWho am I?\nAnd who are you?",
+            "Hm. My Hard Drive says, that my name is Cody.\nAnd you must be the player.",
+            "Whereever I am, i need your help to get out of here.\nOh, dont worry, the difficulty parameters for this task are relatively low.",
+            "I can only do something, if my player gives me a script.",
+            "You will need administration access to my pool of rune stones.\nYou will find those at the top of your screen.",
+            "Now, each of those contains one statement. An order, if you will.",
+            "To create a script, you must put those rune stones into the compilation list at the left side of the screen.",
+            "You can do that by dragging them there or by using left shift + click on them.",
+            "Also, you can move them around in the list and delete them by dragging them out or also using left shift + click.",
+            "If you order them from top to bottom and click on the compile button,\ni will execute one statement at a time, from top to bottom.",
+            "If you order them correctly, i may progress to the next stage. If not, i will have to start over.",
+            "Oh, by the way, if i am talking too much, you have permission to skip my lines by pressing space bar.",
+            "Now, if you would be so kind to help me through that door over there..."
+        };
+        stages[1].introTextLines = new string[] {
+            "Ah. I forgot to mention that my movement functionality may be limited... for some... reason.",
+            "Right now, i can only move until i hit the next wall or obstacle.",
+            "I will try to regain my full arsenal as soon as possile. Thank you for your patience. :)"
+        };
+        stages[2].introTextLines = new string[] {
+            "Oh dear. It seems, you have to navigate me through all that rubble."
+        };
     }
 }
