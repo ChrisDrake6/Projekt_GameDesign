@@ -37,6 +37,8 @@ public class RuneSlotIndicatorPositive : MonoBehaviour, IDropHandler
             eventData.pointerDrag.transform.SetSiblingIndex(gameObject.transform.GetSiblingIndex());
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
             eventData.pointerDrag.GetComponent<RuneStone>().isSlotted = true;
+
+            SoundManager.Instance.PlaySound(SoundManager.Instance.crystalset);
         }
     }
 

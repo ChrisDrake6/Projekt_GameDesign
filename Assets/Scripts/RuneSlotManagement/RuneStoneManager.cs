@@ -37,6 +37,8 @@ public class RuneStoneManager : MonoBehaviour
     {
         runeStone.transform.SetParent(runeStonesParent);
         Invoke("SnapScrollerToBottom", scollSnapToBottomDelay);
+
+        SoundManager.Instance.PlaySound(SoundManager.Instance.crystalset);
     }
 
     /// <summary>

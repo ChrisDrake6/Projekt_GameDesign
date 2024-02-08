@@ -5,6 +5,8 @@ public class PlayerWalkingState : PlayerBaseState
     public Vector3 direction = Vector3.zero;
     public float rayCastDistance = 2;
     public float speed = 10;
+    public AudioSource audiosource;
+    public AudioClip audioclip;
 
     Vector3 currentDestination;
     float cellWidth;
@@ -46,6 +48,12 @@ public class PlayerWalkingState : PlayerBaseState
     public override void UpdateState(PlayerStateManager player)
     {
         player.transform.position = Vector2.MoveTowards(player.transform.position, currentDestination, speed * Time.deltaTime);
+
+        if (!SoundManager.Instance.audiosource.isPlaying)
+        {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.codystep, 0.5f);
+        }
+
         if (currentDestination == player.transform.position)
         {
             if (!player.transitioningBetweenStages)
@@ -71,6 +79,9 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void OnCollisionEnter(PlayerStateManager player)
     {
+
+        SoundManager.Instance.PlaySound(SoundManager.Instance.codycollision);
+
         player.CallForNextOrder();
     }
 }

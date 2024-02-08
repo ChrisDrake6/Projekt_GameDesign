@@ -17,7 +17,11 @@ public class PlayerOpeningDoorState : PlayerBaseState
         {
             // TODO: Check for key
             hit.transform.gameObject.SetActive(false);
+            SoundManager.Instance.PlaySound(SoundManager.Instance.dooropen);
+
             GameManager.Instance.ValidateUserInput(true, "");
+
+
 
         }
         else
