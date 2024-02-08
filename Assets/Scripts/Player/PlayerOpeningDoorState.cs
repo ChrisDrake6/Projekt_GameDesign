@@ -6,6 +6,8 @@ public class PlayerOpeningDoorState : PlayerBaseState
 {
     public float rayCastDistance = 2;
 
+  
+
     public override void EnterState(PlayerStateManager player)
     {
         LayerMask mask = LayerMask.GetMask("Interactable");
@@ -16,6 +18,7 @@ public class PlayerOpeningDoorState : PlayerBaseState
             // TODO: Check for key
             hit.transform.gameObject.SetActive(false);
             GameManager.Instance.ValidateUserInput(true, "");
+
         }
         else
         {
