@@ -92,7 +92,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5265218999673089913}
   - component: {fileID: 4128942339048675057}
-  - component: {fileID: 3526779850209839851}
   m_Layer: 0
   m_Name: Wall_Torch
   m_TagString: Untagged
@@ -168,35 +167,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3526779850209839851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7137886714104981273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 0
-  m_CastsShadows: 0
-  m_SelfShadows: 1
-  m_ApplyToSortingLayers: 7f1d1516eb52cf947b789230dd1357574381c246b5ba3a5e00000000
-  m_ShapePath:
-  - {x: -0.31647408, y: -0.115973175, z: 0}
-  - {x: -0.2526783, y: 0.17521201, z: 0}
-  - {x: 0.19799629, y: 0.17976896, z: 0}
-  - {x: 0.26352125, y: -0.12492724, z: 0}
-  - {x: 0.09036135, y: -0.9679426, z: 0}
-  - {x: -0.13748065, y: -0.9679425, z: 0}
-  m_ShapePathHash: -1921197081
-  m_Mesh: {fileID: 0}
-  m_InstanceId: 42736
-  m_LocalBounds:
-    m_Center: {x: -0.026476413, y: -0.39408684, z: 0}
-    m_Extent: {x: 0.28999767, y: 0.57385576, z: 0}

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2002574510771052919}
   - component: {fileID: 1983531257763875295}
   - component: {fileID: 4356327302920277881}
-  - component: {fileID: 4501007948958487726}
   m_Layer: 0
   m_Name: Fire_bowl_Standalone
   m_TagString: Untagged
@@ -145,42 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce36209ca4a0c24d8fb22bdf03432ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4501007948958487726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548404208442877211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 0
-  m_CastsShadows: 0
-  m_SelfShadows: 1
-  m_ApplyToSortingLayers: 7f1d1516eb52cf947b789230dd1357574381c246b5ba3a5e00000000
-  m_ShapePath:
-  - {x: -0.7123413, y: 0.7918091, z: 0}
-  - {x: -0.24707031, y: 0.653656, z: 0}
-  - {x: 0.28808594, y: 0.65982056, z: 0}
-  - {x: 0.7312622, y: 0.7803345, z: 0}
-  - {x: 0.8583374, y: 0.29675293, z: 0}
-  - {x: 0.6300049, y: 0.06561279, z: 0}
-  - {x: 0.34246826, y: -0.011047363, z: 0}
-  - {x: -0.08331299, y: -0.029907227, z: 0}
-  - {x: -0.51971436, y: 0.06439209, z: 0}
-  - {x: -0.82281494, y: 0.33114624, z: 0}
-  m_ShapePathHash: 191647853
-  m_Mesh: {fileID: 0}
-  m_InstanceId: 43768
-  m_LocalBounds:
-    m_Center: {x: 0.01776123, y: 0.38095093, z: 0}
-    m_Extent: {x: 0.8405762, y: 0.41085815, z: 0}
 --- !u!1 &5410370292218101521
 GameObject:
   m_ObjectHideFlags: 0
