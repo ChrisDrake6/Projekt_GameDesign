@@ -4,7 +4,8 @@ public class PlayerWalkingState : PlayerBaseState
 {
     public Vector3 direction = Vector3.zero;
     public float rayCastDistance = 2;
-    public float speed = 10;
+    public float speed = 5;
+    private Animator animator;
 
     Vector3 currentDestination;
     float cellWidth;
@@ -21,13 +22,35 @@ public class PlayerWalkingState : PlayerBaseState
             return;
         }
 
+        animator = player.GetComponent<Animator>();
+
         if (direction.x < 0)
         {
-            player.spriteRenderer.flipX = true;
+            animator.SetBool("isWalkingLeft", true);
+            animator.SetBool("isWalkingRight", false);
+            animator.SetBool("isWalkingDown", false);
+            animator.SetBool("isWalkingUp", false);
         }
         else if (direction.x > 0)
         {
-            player.spriteRenderer.flipX = false;
+            animator.SetBool("isWalkingLeft", false);
+            animator.SetBool("isWalkingRight", true);
+            animator.SetBool("isWalkingDown", false);
+            animator.SetBool("isWalkingUp", false);
+        }
+        else if (direction.y < 0)
+        {
+            animator.SetBool("isWalkingLeft", false);
+            animator.SetBool("isWalkingRight", false);
+            animator.SetBool("isWalkingDown", true);
+            animator.SetBool("isWalkingUp", false);
+        }
+        else if (direction.y > 0)
+        {
+            animator.SetBool("isWalkingLeft", false);
+            animator.SetBool("isWalkingRight", false);
+            animator.SetBool("isWalkingDown", false);
+            animator.SetBool("isWalkingUp", true);
         }
 
         cellWidth = player.tilemap.cellSize.y;
