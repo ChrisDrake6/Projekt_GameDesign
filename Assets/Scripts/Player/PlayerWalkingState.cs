@@ -5,12 +5,9 @@ public class PlayerWalkingState : PlayerBaseState
     public Vector3 direction = Vector3.zero;
     public float rayCastDistance = 2;
     public float speed = 10;
-    public AudioSource audiosource;
-    public AudioClip audioclip;
 
     Vector3 currentDestination;
     float cellWidth;
-
     // TODO: Use coordinates instead
     float length = 20;
 
