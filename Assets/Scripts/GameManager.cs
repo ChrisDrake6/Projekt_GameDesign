@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Transform runeStoneContainer;
     public GameObject pauseMenu;
     public Tilemap pathMap;
+    private Animator animator;
 
     // Public for testing purposes
     public int currentStage = 0;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
         SetIntroTextLines();
         ReLoadStage(currentStage);
         LoadIntroText();
+        animator = player.GetComponent<Animator>();
     }
 
     void Update()
@@ -94,6 +96,7 @@ public class GameManager : MonoBehaviour
                     // All Stages Completed
                     Debug.Log("Victory!");
                     popupTextSystem.AddPlayerText("Awesome! You have guided me to the end!");
+                    animator.SetBool("wasSuccessful", true);
 
                     // Load next Level
                 }
@@ -118,7 +121,7 @@ public class GameManager : MonoBehaviour
             "Ouch, My Main Processing Unit hurts!",
             "Where am I?\nWho am I?\nAnd who are you?",
             "Hm. My Hard Drive says that my name is Cody.\nAnd you must be the player.",
-            "Whereever I am, I need your help to get out of here.\nOh, don't worry, the difficulty parameters for this task are relatively low.",
+            "Wherever I am, I need your help to get out of here.\nOh, don't worry, the difficulty parameters for this task are relatively low.",
             "I can only do something if my player gives me a script.",
             "You will need administration access to my pool of rune stones.\nYou will find those at the top of your screen.",
             "Now, each of those contains one statement. An order, if you will.",
@@ -126,7 +129,7 @@ public class GameManager : MonoBehaviour
             "You can do so by dragging them there or by using left shift + click on them.",
             "Also, you can move them around in the list and delete them by dragging them out or also using left shift + click.",
             "If you order them from top to bottom and click on the compile button,\nI will execute one statement at a time, from top to bottom.",
-            "If you order them correctly, i may progress to the next stage. If not, i will have to start over.",
+            "If you order them correctly, I may progress to the next stage. If not, I will have to start over.",
             "Oh, by the way, if I am talking too much, you have permission to skip my lines by pressing space bar.",
             "Now, if you would be so kind to help me through that door over there..."
         };
