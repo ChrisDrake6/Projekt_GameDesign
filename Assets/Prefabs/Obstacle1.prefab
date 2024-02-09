@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6587690119804292238}
   - component: {fileID: 6290209432914120546}
   - component: {fileID: 6451164026110201193}
+  - component: {fileID: 317394376088350687}
   m_Layer: 0
   m_Name: Obstacle1
   m_TagString: Untagged
@@ -143,3 +144,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce36209ca4a0c24d8fb22bdf03432ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &317394376088350687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842295677445373244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 7f1d1516eb52cf947b789230dd1357574381c246b5ba3a5e00000000
+  m_ShapePath:
+  - {x: -1, y: -0.99300003, z: 0}
+  - {x: -1.0013924, y: 1.2355833, z: 0}
+  - {x: -0.6021042, y: 1.2799487, z: 0}
+  - {x: -0.595768, y: 1.8820529, z: 0}
+  - {x: 0.2105484, y: 2.3169994, z: 0}
+  - {x: 0.5816994, y: 2.297986, z: 0}
+  - {x: 0.6021042, y: 1.2736108, z: 0}
+  - {x: 0.98871994, y: 1.2165694, z: 0}
+  - {x: 1, y: -0.99300003, z: 0}
+  m_ShapePathHash: 1774144599
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -76506
+  m_LocalBounds:
+    m_Center: {x: -0.00069618225, y: 0.6619997, z: 0}
+    m_Extent: {x: 1.0006962, y: 1.6549997, z: 0}
