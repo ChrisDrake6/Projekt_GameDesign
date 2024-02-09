@@ -24,7 +24,6 @@ public class PlayerStateManager : MonoBehaviour
 
     bool flippedOnDefault;
     Compiler compiler;
-    float collisionDuration = 0;
 
     void Start()
     {
@@ -79,17 +78,6 @@ public class PlayerStateManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         currentState.OnCollisionEnter(this);
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        // Failsave: if player happens to get stuck on any random collider, call oncollision
-        collisionDuration += Time.deltaTime;
-        if (collisionDuration >= 3)
-        {
-            collisionDuration = 0;
-            currentState.OnCollisionEnter(this);
-        }
     }
 
     public void SetPlayerPosition(Vector3 targetPosition)
