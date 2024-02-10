@@ -16,7 +16,9 @@ ESC to pause.
 
 ## Author(s)
 Celestine Zenk
+
 Christoph Ehrig
+
 Simon Opel
 
 ## Credits
