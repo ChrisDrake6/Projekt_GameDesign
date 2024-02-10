@@ -9,6 +9,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip dooropen;
     public AudioClip codystep;
     public AudioClip crystalset;
+    public AudioClip winsound;
+    public AudioClip failuresound;
     public static SoundManager Instance;
     public SoundManager()
     {

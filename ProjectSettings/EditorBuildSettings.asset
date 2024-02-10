@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/UI Scenes/CrankyTankyBlizzardWizardLizard_MainMenu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 6079524a2be7d39429b6cd56cb049799
   - enabled: 1
     path: Assets/Scenes/UI Scenes/CrankyTankyBlizzardWizardLizard_SettingsMenu.unity

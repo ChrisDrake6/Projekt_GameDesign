@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
             PopupTextSystem popupTextSystem = PopupTextSystem.Instance;
             if (success)
             {
+
                 currentStage++;
                 if (currentStage < stages.Count)
                 {
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
                 {
                     // All Stages Completed
                     Debug.Log("Victory!");
+                    SoundManager.Instance.PlaySound(SoundManager.Instance.winsound);
                     popupTextSystem.AddPlayerText("Awesome! You have guided me to the end!");
                     animator.SetBool("wasSuccessful", true);
 
@@ -105,6 +107,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 Debug.Log("Stage failed");
+                SoundManager.Instance.PlaySound(SoundManager.Instance.failuresound);
                 popupTextSystem.AddPlayerText(message);
                 ReLoadStage(currentStage);
             }
