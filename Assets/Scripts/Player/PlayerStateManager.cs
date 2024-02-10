@@ -32,16 +32,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     void Update()
-    {
-        LayerMask mask = LayerMask.GetMask("Obstacle");
-        if (Physics2D.BoxCast(new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.size.y / 2), new Vector2(2, 2), 0, Vector2.down, 2, mask))
-        {
-            spriteRenderer.sortingLayerID = SortingLayer.NameToID("Walls");
-        }
-        else
-        {
-            spriteRenderer.sortingLayerID = SortingLayer.NameToID("Obstacles");
-        }
+    {       
         currentState.UpdateState(this);
     }
 
