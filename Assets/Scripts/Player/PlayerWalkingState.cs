@@ -4,7 +4,7 @@ public class PlayerWalkingState : PlayerBaseState
 {
     public Vector3 direction = Vector3.zero;
     public float rayCastDistance = 2;
-    public float speed = 5;
+    public float speed = 7.5F;
     private Animator animator;
 
     Vector3 currentDestination;
